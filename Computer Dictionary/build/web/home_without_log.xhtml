@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <h:outputStylesheet name="./css/home.css"/>
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+
+        <div id="top" class="top">
+
+            <ui:insert name="top">
+                <ul>
+                    <h:form id="form619">
+                        <li> <p:commandLink value="Register" styleClass="link" id="link1" onclick="PF('register').show();"></p:commandLink></li>
+                        <li>   <p:commandLink value="LOGIN" styleClass="link" id="link2" onclick="PF('login').show();" ></p:commandLink></li>
+                        <li>   <p:commandLink value="HOME" styleClass="link" style="color: gold"></p:commandLink></li>
+                    </h:form>
+
+                </ul>
+            </ui:insert>  
+
+
+        </div>
+        <div id="test"></div>
+        <div id="list">
+
+            <h:form style="width: 400px;margin: 0px auto;margin-bottom: 20px">
+
+                <p:inputText value="#{terms.searchkey}"   styleClass="home_serch_input"> 
+                    <f:ajax execute="@this" render="form2" event="keyup" listener="#{terms.search()}"/>
+                </p:inputText>
+            </h:form>
+            <h1 style="color: #045491;margin-bottom: 40px">Depatments</h1>  
+            <p:commandLink action="#{terms.chosedepart0()}" value="Home" styleClass="list_item"></p:commandLink><br/><br/>
+            <p:commandLink action="#{terms.chosedepart1()}" update="" value="Computer Science" styleClass="list_item"></p:commandLink><br/><br/>
+            <p:commandLink action="#{terms.chosedepart2()}" value="Electricity Engineering" styleClass="list_item"></p:commandLink><br/><br/>
+            <p:commandLink action="#{terms.chosedepart3()}" value="Electronics Engineering" styleClass="list_item"></p:commandLink><br/><br/>
+            <p:commandLink action="#{terms.chosedepart4()}" value="Economy" styleClass="list_item"></p:commandLink><br/><br/>
+            <p:commandLink action="#{terms.chosedepart5()}" value="Politics" styleClass="list_item"></p:commandLink>
+            <br/><br/> <br/><br/>
+            <p style="color: #045491">
+                A modern idea containing all the contents 
+                in the fields of computer science, medical, political, economic and engineering terms,
+                logIn to be able add Definitions.
+            </p>
+        </div>
+        <div class="content">
+            <h:form id="form2">
+
+                <p:dataTable id="dataTable" var="ter" value="#{terms.search_terms}"  style="width: 800px;margin: 0px auto;margin-bottom: 370px">
+
+                    <p:column>
+
+                        <f:facet name="header"> <h:outputText value="Definations "/>
+                        </f:facet>
+                        <p:commandLink action="#{terms.readmore(ter.id)}" >
+                            <p:fieldset  style="margin-bottom:20px" styleClass="result">
+                                <h:outputLabel value="(#{ter.termName}.)" style="font-size: 20px;text-transform: capitalize;margin-left: 30px;color: blue"></h:outputLabel>
+                                <br/>                       
+                                <h:outputText
+                                    value="#{ter.info.length() gt 50 ? ter.info.substring(0,50).concat('...') : ter.info}" style="padding-left: 30px"/>
+                            </p:fieldset>
+                        </p:commandLink>
+                    </p:column>
+
+                </p:dataTable>
+
+
+            </h:form>           
+        </div>
+
+        <div class="footer">
+
+            &copy;Ahmed ElSayed
+        </div>
+
+        <p:dialog header="Login" widgetVar="login" modal="true" height="150">
+            <p:panel>
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Email" ></p:outputLabel>
+                        <p:inputText value="#{register.email}" styleClass="input" id="em" required="true"/>
+
+                        <p:outputLabel value="Passward" ></p:outputLabel>
+                        <p:password value="#{register.password}" styleClass="input" id="pa" required="true"/> 
+
+
+                        <p:outputLabel value="" ></p:outputLabel>
+                        <p:commandButton  action="#{register.login()}" value="Login" styleClass="butt_log" update="msg">
+                        </p:commandButton>
+                        <p:outputLabel value="" ></p:outputLabel>
+                        <p:commandLink value="Forget Password " onclick="PF('resetpass').show(); PF('login').hide();"></p:commandLink>
+                        <p:outputLabel value="" ></p:outputLabel>
+                        <p:outputLabel value="#{register.msg}" id="msg"></p:outputLabel>
+                    </h:panelGrid>
+
+                </h:form>
+                <p:outputLabel value="" ></p:outputLabel>
+
+            </p:panel>
+        </p:dialog>   
+        <p:dialog header="Reset Password" widgetVar="resetpass" modal="true" height="100">
+            <p:panel>
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Email" ></p:outputLabel>
+                        <p:inputText value="#{register.email}" styleClass="input" id="em" required="true"/>
+                        <p:outputLabel value="" ></p:outputLabel>
+                        <p:commandButton  action="#{register.login()}" value="Reset" styleClass="butt_log" update="msg">
+                        </p:commandButton>
+                        <p:outputLabel value="" ></p:outputLabel>
+                        <p:outputLabel value="#{register.msg}" id="msg"></p:outputLabel>
+                    </h:panelGrid>
+
+                </h:form>
+                <p:outputLabel value="" ></p:outputLabel>
+
+            </p:panel>
+        </p:dialog>   
+        <p:dialog header=" Register" widgetVar="register" modal="true" height="220" width="500px">
+            <p:panel >
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <p:outputLabel value="Name" ></p:outputLabel>
+                        <p:inputText value="#{register.name}" id="na" styleClass="input"/>
+
+                        <p:outputLabel value="Email" ></p:outputLabel>
+                        <p:inputText value="#{register.email}" id="em" styleClass="input"/>
+
+                        <p:outputLabel value="Passward" ></p:outputLabel>
+                        <p:inputText value="#{register.password}" id="pa" styleClass="input" /> 
+
+                        <p:outputLabel value="Confirm Password" ></p:outputLabel>
+                        <p:inputText value="#{register.confirm_password}" id="cpa" styleClass="input" /> 
+
+
+                        <p:outputLabel value="" ></p:outputLabel>
+
+                        <p:commandButton  action="#{register.singnUp()}" value="Register" styleClass="butt_log">
+                            <f:ajax execute="@this" render="msg"                   
+                                    event="click" />
+                        </p:commandButton>
+                        <p:outputLabel value="" ></p:outputLabel> <p:outputLabel value="#{register.msg}" id="msg"></p:outputLabel>
+                        <p:outputLabel value="" ></p:outputLabel>
+                        <p:commandLink onclick="PF('login').show();
+                                PF('register').hide();">already have an account!</p:commandLink>
+                    </h:panelGrid>
+
+                </h:form>
+                <p:outputLabel value="" ></p:outputLabel>
+
+            </p:panel>
+
+        </p:dialog>   
+
+    </h:body>
+
+</html>

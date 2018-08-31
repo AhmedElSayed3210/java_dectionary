@@ -1,0 +1,48 @@
+*{margin: 0;
+
+}
+#container{
+    width: 100%;
+    margin: 0px auto;
+    padding-bottom: 465px;
+   background-color:#9999ff;
+   border-bottom: 2px solid yellow
+}
+h2{
+    width: 200px;
+    margin: 0px auto;
+    padding-top: 30px;
+    color: red;
+    font-weight:600;
+    padding-bottom: 10px
+}
+#container #subcont{
+    width: 90%;
+    margin: 0px auto;
+    margin-bottom: 100px
+    
+}
+#container #menu{
+    width: 232px;
+    float: left;
+    border: 3px solid yellow;
+    background-attachment: fixed
+   
+}
+#container #data{
+    width: 900px;
+    float: left;
+    margin-left: 10px;
+    height: 550px;
+    overflow: auto
+      
+}
+.login{
+   
+   width: 550px;
+    
+}
+.pass_change{
+  width: 300px
+    
+}

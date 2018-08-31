@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <h:outputStylesheet name="./css/home.css"/>
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+
+        <div id="top" class="top">
+            <ui:insert name="top">
+                <ul>
+
+                    <li><p:commandLink action="#{logout.logout()}" value="Logout"></p:commandLink></li>
+                    <li><a href="profile.xhtml">Profile</a></li>
+                    <li><a href="javascript:;" style="color: gold">Add Definition</a></li>
+                    <li><a href="contact.xhtml">Contact</a></li>
+                    <li><a href="home.xhtml">HOME</a></li>
+                </ul>
+            </ui:insert>
+        </div>
+        <div id="test"></div>
+        <div class="content" style="padding-bottom: 0px">
+            <center>
+                <div id="add">
+                    <h:form id="form12">
+
+                        <p:inputText value="#{terms.termName}" id="word" placeholder="Word" style="border:0;background-color: ghostwhite">
+                            <f:ajax event="keyup" render="clearButton"></f:ajax>
+                        </p:inputText>
+
+                        <br/><br/>
+                        <p:inputTextarea value="#{terms.info}" styleClass="textarea"  placeholder=" Definition" rows="10">
+
+                        </p:inputTextarea><br/><br/>
+                        <p:outputLabel value="#{terms.msg}" id="msg" style="color: red"></p:outputLabel><br/>
+                            <p:outputLabel for="console" value="Choose Department" />
+                            <p:selectOneRadio id="console" value="#{terms.choose_department}">
+                                <f:selectItem itemLabel="Computer Science" itemValue="1" />
+                                <f:selectItem itemLabel="Electricity Engineering" itemValue="2" />
+                                <f:selectItem itemLabel="Electronics Engineering" itemValue="3" />
+                                <f:selectItem itemLabel="Economy" itemValue="4" />
+                                <f:selectItem itemLabel="Politics" itemValue="5" />
+                            </p:selectOneRadio><br/>
+                            <p:commandButton action="#{terms.add_term()}"  value="Add Defination"  style="background-color: gold;bottom: 0" update="msg">
+                            </p:commandButton>
+                        <p:commandButton action="#{terms.cancel()}" value="Cancel/Clear" style="background-color: gold;bottom: 0">
+                            <f:ajax execute="@this" render="form12"                   
+                                    event="click" listener="#{terms.cancel()}"/>
+                        </p:commandButton>
+
+
+                    </h:form>
+
+                </div>
+
+            </center>
+        </div>
+        <div class="footer">
+
+            &copy;Ahmed ElSayed
+        </div>
+    </h:body>
+
+</html>

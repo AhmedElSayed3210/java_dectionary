@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/admin.css"/>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <div id="container">
+            <h2>Welcome <p:outputLabel value="Admin" style="color: blue"></p:outputLabel></h2>
+
+            <div id="subcont">
+                <div id="menu">
+                    <h:form>
+                        <p:menu>
+                            <p:submenu label="Keep In Touch" style="background-color: orangered">
+                                <p:menuitem value="subscribers" url="admin_home.xhtml"/>
+                                <p:menuitem value="contact" url="admin_contact.xhtml" />
+                            </p:submenu>
+                            <p:submenu label="Terms Control" style="background-color: orangered">
+                                <p:menuitem value="Definitions" url="admin_definations.xhtml"/>
+                                <p:menuitem value="Add Definition" url="admin_add_defination.xhtml" />
+                                <p:menuitem value="Review Definition" url="javascript:;" style="background-color: activeborder" />
+                            </p:submenu>
+                            <p:submenu label="Personal Information" style="background-color: orangered">
+                                <p:menuitem value="Change Username" url="admin_chang_user.xhtml" />
+                                <p:menuitem value="Change Password" url="admin_changepassword.xhtml" />
+                                <p:menuitem value="Logout" action="#{logout.logout()}" />
+                            </p:submenu>
+                        </p:menu>  
+                    </h:form>
+
+
+                </div>
+
+                <div id="data">
+                    <p:outputLabel value="Review The Defination" style="padding-left: 20px;"></p:outputLabel>
+
+                    <h:form id="form213">
+
+                        <p:dataTable id="t" value="#{terms.admin_review_terms}" var="c" style="text-align: center;">
+
+
+                            <p:column  headerText="ID">
+                                <p:outputLabel value="#{c.id}" ></p:outputLabel>
+                            </p:column>
+
+                            <p:column   headerText="Word">
+                                <p:outputLabel value="#{c.termName}"></p:outputLabel>
+                            </p:column>
+
+                            <p:column headerText="Writen by">
+                                <p:outputLabel value="#{c.writenBy}" ></p:outputLabel>
+                            </p:column>
+
+
+                            <p:column headerText="View">
+                                <p:commandButton value="View" type="button" onclick="PF('dlg2').show();" />
+
+                                <p:dialog header="Defination" widgetVar="dlg2" modal="true" width="700px" height="400px">
+                                    <h:outputText value="#{c.info}."/><br/><br/>
+                                    <p:commandButton action="#{terms.approvedterm(c.id)}" value="Add Defination">
+                                        <f:ajax execute="@this" render="form213" />
+                                    </p:commandButton>
+                                </p:dialog> 
+
+                            </p:column>
+                            <p:column headerText="Approved">
+                                <p:commandButton action="#{terms.approvedterm(c.id)}" value="Approved">
+                                
+                                </p:commandButton>
+                            </p:column>
+                            <p:column headerText="Delete">
+                                <p:commandButton action="#{terms.deleteterm(c.id)}" value="Delete">
+                                    <f:ajax execute="@form" render="@form" />
+                                </p:commandButton>
+                            </p:column>
+
+
+                        </p:dataTable>
+
+                    </h:form>
+
+                </div>
+
+            </div>
+        </div>
+
+    </h:body>
+</html>
+

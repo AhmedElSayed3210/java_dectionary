@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <h:outputStylesheet name="./css/home.css"/>
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+
+        <div id="top" class="top">
+            <ui:insert name="top">
+                <ul>
+
+                    <li><p:commandLink action="#{logout.logout()}" value="Logout"></p:commandLink></li>
+                    <li><a href="profile.xhtml">Profile</a></li>
+                    <li><a href="add_Definition.xhtml">Add Definition</a></li>
+                    <li><a href="javascript:;" style=" color: gold">Contact</a></li>
+                    <li><a href="home.xhtml" >HOME</a></li>
+                </ul>
+            </ui:insert>
+        </div>
+        <div id="test"></div>
+        <div class="content" style="padding-bottom: 26px">
+            <div id="contact_text">
+
+                <p:outputLabel value="We are here to answer any questions you may have about our combadi experiences. Reach out to us and we'll respond as soon as we can."></p:outputLabel>
+                <br/><br/>
+
+                <p:outputLabel value="Even if there is something you have always wanted to experience and can't find it on combadi, let us know and we promise we'll do our best to find it for you and send you there."></p:outputLabel>
+            </div>           
+
+            <div id="contact" style="padding-bottom: 150px">
+
+                <h:form>
+                    <p:outputLabel value="*" style="font-size: 25px;color: red; "></p:outputLabel>
+                    <p:inputText value="#{contact.name}" placeholder="Name" style="width: 230px;height:20px;font-size: 18px;"></p:inputText><br/><br/>
+                    <p:outputLabel value="*" style="font-size: 25px;color: red; "></p:outputLabel>
+                    <p:inputText value="#{contact.email}" placeholder="Email" style="width: 230px;height:20px;font-size: 18px;"></p:inputText><br/><br/>
+                    <p:outputLabel value="*" style="font-size: 25px;color: red; "></p:outputLabel><br/>
+                    <p:inputTextarea value="#{contact.message}" style="width:500px; font-size: 18px;padding-left: 5px;overflow: auto;height: 250px" placeholder="Message"></p:inputTextarea><br/><br/>
+                    <p:commandButton action="#{contact.addcontact()}" value="Send Message " style="background-color: gold;font-size: 20px" ></p:commandButton>
+
+                </h:form>
+            </div>
+
+        </div>
+        <div class="footer">
+
+            &copy;Ahmed ElSayed
+        </div>
+    </h:body>
+
+</html>

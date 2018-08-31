@@ -1,0 +1,117 @@
+.content{
+    background-color:#dddddd;
+    height: 100%;
+    padding-bottom: 130px;
+}
+.home_serch_input , #home_serch_input{
+    direction: ltr;
+    background-image: url(../images/search1.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 35px;
+    font-size: 18px;
+    background-color: white;
+    height: 25px;
+    width: 210px;
+    margin-bottom: 30px;
+    border: 0;
+    border-bottom: 1px black dashed
+}
+
+#test{
+    height: 70px;
+    background-color:#dddddd;
+
+}
+.result{
+    width: 60%;
+    margin: 0px auto;
+    border: 0;
+    background-color:transparent
+}
+#update,#add{
+    width: 80%;
+    padding: 20px;
+    padding-bottom: 30px;
+    background-color:ghostwhite;
+    margin: 0px auto;
+    margin-left: 100px;
+    position: relative;
+    z-index: 100;
+    font-size: 18px;
+    display: none
+
+}
+#add{
+    display: block;
+    padding-bottom: 200px;
+    z-index: 0
+}
+#list{
+    width: 220px;
+    background-color: white;
+    height: 500px;
+    position: fixed;
+    left: 0;
+    padding: 10px;
+    color: white;
+    padding-top: 30px
+}
+#list .list_item{
+    color: black;
+    font-size: 18px;
+
+}
+#list .list_item:hover{
+    color: gold;
+}
+#right_list{
+    width: 180px;
+    background-color: white;
+    height: 500px;
+    position: fixed;
+    right: 0;
+    padding: 10px;
+    color: black;
+    padding-top: 30px
+}
+#contact{
+    margin-left: 30%;
+    padding-top:0px;
+}
+
+#contact form{
+    padding: 5px;
+    padding-bottom: 0
+}
+#contact_text{
+    width:60%;
+    padding: 5px;
+    padding-left: 30%;
+    font-size: 18px
+}
+#next{
+    width: 100%;
+    position: fixed;
+    bottom: 30px;
+    text-align: center;
+    font-size: 14px
+}
+.footer{
+    text-align: center;
+    height: 20px;
+    width: 100%;
+    background-color:darkgray;
+    position: fixed;
+    bottom: 0;
+    color: white
+}
+.textarea{
+
+    width: 900px;
+    padding: 30px;
+    height: 200px;
+    overflow: auto;
+    border: 0;
+
+}

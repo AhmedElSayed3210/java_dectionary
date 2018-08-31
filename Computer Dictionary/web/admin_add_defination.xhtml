@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/admin.css"/>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <div id="container">
+            <h2>Welcome <p:outputLabel value="Admin" style="color: blue"></p:outputLabel></h2>
+
+            <div id="subcont">
+                <div id="menu">
+                    <h:form>
+                        <p:menu>
+                            <p:submenu label="Keep In Touch" style="background-color: orangered">
+                                <p:menuitem value="subscribers" url="admin_home.xhtml"/>
+                                <p:menuitem value="contact" url="admin_contact.xhtml" />
+                            </p:submenu>
+                            <p:submenu label="Terms Control" style="background-color: orangered">
+                                <p:menuitem value="Definitions" url="admin_definations.xhtml"/>
+                                <p:menuitem value="Add Definition" url="javascript:;" style="background-color: activeborder"/>
+                                <p:menuitem value="Review Definition" url="admin_review_defination.xhtml" />
+                            </p:submenu>
+                            <p:submenu label="Personal Information" style="background-color: orangered">
+                                <p:menuitem value="Change Username" url="admin_chang_user.xhtml" />
+                                <p:menuitem value="Change Password" url="admin_changepassword.xhtml" />
+                                <p:menuitem value="Logout" action="#{logout.logout()}" />
+                            </p:submenu>
+                        </p:menu> 
+                    </h:form>
+
+
+                </div>
+
+                <div id="data">
+                    <p:outputLabel value="Add a New Defination" style="padding-left: 20px;"></p:outputLabel>
+
+                    <h:form>
+
+                        <p:inputText value="#{terms.termName}" placeholder="Word" style="width: 250px;margin-bottom: 20px;margin-top: 20px"></p:inputText><br/>
+                        <p:inputTextarea value="#{terms.info}" placeholder="Defination" style="width: 650px;height: 300px;overflow: auto"></p:inputTextarea>
+                        <br/>
+                        <p:outputLabel value="#{terms.msg}" id="msg"></p:outputLabel>
+                        <f:ajax render="msg" execute="@form" event="click"/>
+                        <p:commandButton action="#{terms.admin_add_term()}" value="Add Defination" style="background-color: gold;bottom: 0"></p:commandButton>
+
+                        <p:commandButton action="#{terms.cancel()}" value="Cancel" style="background-color: gold;bottom: 0"></p:commandButton>
+                        <br/>
+
+                    </h:form>
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </h:body>
+</html>
+

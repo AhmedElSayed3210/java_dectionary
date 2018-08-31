@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/admin.css"/>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <div id="container">
+            <h2>Welcome <p:outputLabel value="Admin" style="color: blue"></p:outputLabel></h2>
+
+            <div id="subcont">
+                <div id="menu">
+                    <h:form>
+                        <p:menu>
+                            <p:submenu label="Keep In Touch" style="background-color: orangered">
+                                <p:menuitem value="subscribers" url="javascript:;" style="background-color: activeborder"/>
+                                <p:menuitem value="contact" url="admin_contact.xhtml" />
+                            </p:submenu>
+                            <p:submenu label="Terms Control" style="background-color: orangered">
+                                <p:menuitem value="Definitions" url="admin_definations.xhtml" />
+                                <p:menuitem value="Add Definition" url="admin_add_defination.xhtml" />
+                                <p:menuitem value="Review Definition" url="admin_review_defination.xhtml" />
+                            </p:submenu>
+                            <p:submenu label="Personal Information" style="background-color: orangered">
+                                <p:menuitem value="Change Username" url="admin_chang_user.xhtml" />
+                                <p:menuitem value="Change Password" url="admin_changepassword.xhtml" />
+                                <p:menuitem value="Logout" action="#{logout.logout()}" />
+                            </p:submenu>
+                        </p:menu>    
+
+                    </h:form>
+
+                </div>
+
+                <div id="data">
+                    <p:outputLabel value="The Current Users" style="padding-left: 20px;"></p:outputLabel>
+                    <h:form>
+
+                        <p:dataTable value="#{register.subscrib}" id="t" var="c" style="text-align: center">
+
+
+                            <p:column  headerText="ID">
+
+                                <p:outputLabel value="#{c.id}"></p:outputLabel>
+
+                            </p:column>
+
+                            <p:column   headerText="Name">
+
+                                <p:outputLabel value="#{c.name}"></p:outputLabel>
+
+                            </p:column>
+
+                            <p:column headerText="Email">
+                                <p:outputLabel value="#{c.email} "></p:outputLabel>
+
+                            </p:column>
+
+
+
+                        </p:dataTable>
+
+                    </h:form>
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </h:body>
+</html>
+

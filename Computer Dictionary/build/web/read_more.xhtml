@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <h:outputStylesheet name="./css/home.css"/>
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+
+        <div id="top" class="top">
+            <ui:insert name="top">
+                <ul>
+
+                    <li>
+                        <h:form>
+
+                            <p:commandLink  action="#{logout.logout()}" value="Logout"></p:commandLink>   
+                        </h:form>
+                    </li>
+                    <li><a href="profile.xhtml" >Profile</a></li>
+                    <li><a href="add_Definition.xhtml" >Add Definition</a></li>
+                    <li><a href="contact.xhtml">Contact</a></li>
+                    <li><a href="home.xhtml">HOME</a></li>
+                </ul>
+            </ui:insert>
+        </div>
+        <div id="test"></div>
+        <div class="content" style="padding-bottom: 50px">
+            <center>
+                <div id="update">
+                    <form>
+                        <p:inputTextarea value="" style="width: 900px"></p:inputTextarea><br/><br/>
+                        <p:commandButton value="Update Defination" style="background-color: gold;bottom: 0"></p:commandButton>
+                        <p:commandButton value="Cancel" style="background-color: gold;bottom: 0" onclick="show_hide_update()"></p:commandButton>
+                    </form>
+
+                </div>
+                <h:form id="data">
+                    <p:fieldset  style="margin-bottom:20px;margin-top:30 px;" styleClass="result">
+                        <h:panelGrid columns="1" cellpadding="10" style="margin: 0px;text-align: center;padding-bottom: 10px">
+                            <h:outputText value="#{terms.termName}" rendered="#{terms.flag}" style="font-size: 20px;text-transform: capitalize;color: blue;background-color: transparent;text-align: center" ></h:outputText>
+                            <h:inputText value="#{terms.termName}" rendered="#{!terms.flag}" style="font-size: 20px;text-transform: capitalize;color: blue"> </h:inputText>
+                            <h:inputTextarea value="#{terms.info}" readonly="true" rendered="#{terms.flag}" style="width: 600px;height: 350px;border: 0;padding: 10px;background-color: transparent;text-align: center"></h:inputTextarea>
+                            <h:inputTextarea value="#{terms.info}" rendered="#{!terms.flag}" style="height: 350px;width: 600px;padding: 10px" ></h:inputTextarea>
+                        </h:panelGrid>
+                    </p:fieldset>
+                    <p:commandButton action="#{terms.changeFlag()}" rendered="#{terms.flag}" value="Update Defination" style="background-color: gold;bottom: 0" onclick="show_hide_update()"></p:commandButton>
+
+                    <p:commandButton  action="#{terms.updateterm()}" value="SAVE" rendered="#{!terms.flag}" style="background-color: gold;bottom: 0" onclick="show_hide_update()"></p:commandButton>
+                    <p:commandButton action="#{terms.cancelchange()}"  value="CANCEL" rendered="#{!terms.flag}" style="background-color: gold;bottom: 0" onclick="show_hide_update()"></p:commandButton>
+
+                </h:form>
+
+            </center>
+        </div>
+        <div class="footer">
+
+            &copy;Ahmed ElSayed
+        </div>
+    </h:body>
+
+</html>
